@@ -237,23 +237,176 @@ style.innerHTML = `
 document.head.appendChild(
     style
 );
-/* Show/Hide Password */
-const passwordInput=document.getElementById('password');
-const togglePassword=document.getElementById('togglePassword');
-togglePassword?.addEventListener('click',function(){
- if(passwordInput.type==='password'){passwordInput.type='text';this.classList.replace('fa-eye','fa-eye-slash');}
- else{passwordInput.type='password';this.classList.replace('fa-eye-slash','fa-eye');}
-});
-document.getElementById('forgotPasswordLink')?.addEventListener('click',function(e){
- e.preventDefault();
- const username=prompt('Enter Username');
- if(!username) return;
- const users=Storage.get(CONFIG.KEYS.USERS,[]);
- const user=users.find(u=>u.username===username);
- if(!user){showMessage('User not found','error');return;}
- const np=prompt('Enter New Password');
- if(!np) return;
- user.password=np;
- Storage.set(CONFIG.KEYS.USERS,users);
- showMessage('Password Reset Successful','success');
-});
+
+/* =========================
+Show / Hide Password
+========================= */
+
+const passwordInput =
+document.getElementById(
+'password'
+);
+
+const togglePassword =
+document.getElementById(
+'togglePassword'
+);
+
+togglePassword?.addEventListener(
+
+```
+'click',
+
+function(){
+
+    if(
+        passwordInput.type ===
+        'password'
+    ){
+
+        passwordInput.type =
+        'text';
+
+        this.classList.remove(
+            'fa-eye'
+        );
+
+        this.classList.add(
+            'fa-eye-slash'
+        );
+    }
+
+    else{
+
+        passwordInput.type =
+        'password';
+
+        this.classList.remove(
+            'fa-eye-slash'
+        );
+
+        this.classList.add(
+            'fa-eye'
+        );
+    }
+}
+```
+
+);
+
+/* =========================
+Forgot Password
+========================= */
+
+const forgotPasswordLink =
+document.getElementById(
+'forgotPasswordLink'
+);
+
+forgotPasswordLink?.addEventListener(
+
+```
+'click',
+
+function(e){
+
+    e.preventDefault();
+
+    const username =
+
+    prompt(
+        'Enter Username'
+    );
+
+    if(!username){
+
+        return;
+    }
+
+    const users =
+
+    Storage.get(
+
+        CONFIG.KEYS.USERS,
+
+        []
+    );
+
+    const user =
+
+    users.find(
+
+        item =>
+
+        item.username
+        .toLowerCase()
+
+        ===
+
+        username
+        .trim()
+        .toLowerCase()
+    );
+
+    if(!user){
+
+        Utils.toast(
+
+            'User Not Found',
+
+            'error'
+        );
+
+        return;
+    }
+
+    const newPassword =
+
+    prompt(
+        'Enter New Password'
+    );
+
+    if(!newPassword){
+
+        return;
+    }
+
+    if(
+
+        newPassword.length < 4
+
+    ){
+
+        Utils.toast(
+
+            'Password Must Be At Least 4 Characters',
+
+            'warning'
+        );
+
+        return;
+    }
+
+    user.password =
+    newPassword;
+
+    Storage.set(
+
+        CONFIG.KEYS.USERS,
+
+        users
+    );
+
+    Utils.toast(
+
+        'Password Reset Successful',
+
+        'success'
+    );
+}
+```
+
+);
+
+
+
