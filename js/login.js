@@ -237,3 +237,23 @@ style.innerHTML = `
 document.head.appendChild(
     style
 );
+/* Show/Hide Password */
+const passwordInput=document.getElementById('password');
+const togglePassword=document.getElementById('togglePassword');
+togglePassword?.addEventListener('click',function(){
+ if(passwordInput.type==='password'){passwordInput.type='text';this.classList.replace('fa-eye','fa-eye-slash');}
+ else{passwordInput.type='password';this.classList.replace('fa-eye-slash','fa-eye');}
+});
+document.getElementById('forgotPasswordLink')?.addEventListener('click',function(e){
+ e.preventDefault();
+ const username=prompt('Enter Username');
+ if(!username) return;
+ const users=Storage.get(CONFIG.KEYS.USERS,[]);
+ const user=users.find(u=>u.username===username);
+ if(!user){showMessage('User not found','error');return;}
+ const np=prompt('Enter New Password');
+ if(!np) return;
+ user.password=np;
+ Storage.set(CONFIG.KEYS.USERS,users);
+ showMessage('Password Reset Successful','success');
+});

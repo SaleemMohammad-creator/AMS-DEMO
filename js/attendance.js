@@ -1093,23 +1093,6 @@ Utils.toast(
     'Attendance Record Deleted',
     'success'
 );
-    
-    {
-
-        attendanceData.splice(
-            index,
-            1
-        );
-
-        Storage.set(
-
-            CONFIG.KEYS.ATTENDANCE,
-
-            attendanceData
-        );
-
-        renderTable();
-    }
 };
 
 

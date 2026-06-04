@@ -212,3 +212,15 @@ resetSettingsBtn.onclick = () => {
 
     location.reload();
 };
+
+document.getElementById('changePasswordBtn')?.addEventListener('click',()=>{
+ const u=document.getElementById('cpUsername').value.trim();
+ const p=document.getElementById('cpPassword').value.trim();
+ if(!u||!p){ alert('Enter username and password'); return; }
+ const users=Storage.get(CONFIG.KEYS.USERS,[]);
+ const user=users.find(x=>x.username===u);
+ if(!user){ alert('User not found'); return; }
+ user.password=p;
+ Storage.set(CONFIG.KEYS.USERS,users);
+ alert('Password updated successfully');
+});

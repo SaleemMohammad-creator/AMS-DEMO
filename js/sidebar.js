@@ -301,3 +301,11 @@ document
     });
 
     
+document.addEventListener('click',function(e){
+ const a=e.target.closest('a[href*="index.html"], .logout-btn');
+ if(a){
+   if(!confirm('Are you sure you want to logout?')){
+      e.preventDefault();
+   }
+ }
+});
