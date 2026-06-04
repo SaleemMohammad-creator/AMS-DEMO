@@ -1,0 +1,930 @@
+/* =========================
+   AMS LOGIN
+   SCRATCH CSS - PART 1
+========================= */
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+    --secondary:#4f46e5;
+    --accent:#06b6d4;
+
+    --dark:#061126;
+    --dark2:#10254d;
+
+    --white:#ffffff;
+    --text:#0f172a;
+    --muted:#94a3b8;
+
+    --glass:
+    rgba(255,255,255,.08);
+
+    --glass-border:
+    rgba(255,255,255,.10);
+
+    --shadow:
+    0 30px 80px
+    rgba(0,0,0,.35);
+}
+
+/* =========================
+   BODY
+========================= */
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+
+    font-family:
+    'Poppins',
+    sans-serif;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #040b1b 0%,
+        #0b1d42 45%,
+        #123168 100%
+    );
+
+    position:relative;
+}
+
+/* =========================
+   BACKGROUND SHAPES
+========================= */
+
+.background-shapes{
+
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    z-index:0;
+}
+
+.background-shapes span{
+
+    position:absolute;
+    border-radius:50%;
+    filter:blur(45px);
+}
+
+.background-shapes span:nth-child(1){
+
+    width:420px;
+    height:420px;
+
+    background:
+    rgba(37,99,235,.28);
+
+    top:-120px;
+    left:-140px;
+}
+
+.background-shapes span:nth-child(2){
+
+    width:360px;
+    height:360px;
+
+    background:
+    rgba(79,70,229,.22);
+
+    bottom:-140px;
+    right:-120px;
+}
+
+.background-shapes span:nth-child(3){
+
+    width:220px;
+    height:220px;
+
+    background:
+    rgba(6,182,212,.16);
+
+    top:45%;
+    left:15%;
+}
+
+.background-shapes span:nth-child(4){
+
+    width:260px;
+    height:260px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    top:18%;
+    right:12%;
+}
+
+/* =========================
+   LOGIN CONTAINER
+========================= */
+
+.login-container{
+
+    width:1180px;
+    max-width:92vw;
+
+    height:88vh;
+    max-height:760px;
+    min-height:650px;
+
+    display:grid;
+
+    grid-template-columns:
+    1.15fr
+    .85fr;
+
+    border-radius:36px;
+
+    overflow:hidden;
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid
+    rgba(255,255,255,.08);
+
+    backdrop-filter:
+    blur(24px);
+
+    box-shadow:
+    var(--shadow);
+
+    position:relative;
+    z-index:5;
+}
+
+/* =========================
+   LEFT PANEL
+========================= */
+
+.left-panel{
+
+    position:relative;
+
+    background:
+    linear-gradient(
+        145deg,
+        #071126,
+        #10264f
+    );
+
+    padding:
+    42px
+    48px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    overflow:hidden;
+}
+
+/* Glow */
+
+.left-panel::before{
+
+    content:'';
+
+    position:absolute;
+
+    width:520px;
+    height:520px;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(37,99,235,.22),
+        transparent 70%
+    );
+
+    top:60px;
+    right:-220px;
+}
+
+.left-panel::after{
+
+    content:'';
+
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    border-radius:50%;
+
+    border:
+    1px solid
+    rgba(255,255,255,.05);
+
+    left:-90px;
+    bottom:-90px;
+}
+
+/* =========================
+   LOGO AREA
+========================= */
+
+.logo-area{
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    position:relative;
+    z-index:2;
+}
+
+.logo-area i{
+
+    width:62px;
+    height:62px;
+
+    border-radius:20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(37,99,235,.40),
+        rgba(79,70,229,.30)
+    );
+
+    color:#93c5fd;
+    font-size:28px;
+
+    box-shadow:
+    0 12px 28px
+    rgba(37,99,235,.28);
+}
+
+.logo-area h2{
+
+    color:#fff;
+
+    font-size:26px;
+    font-weight:700;
+
+    letter-spacing:.5px;
+}
+
+/* =========================
+   HERO CONTENT
+========================= */
+
+.left-content{
+
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    position:relative;
+    z-index:2;
+
+    max-width:540px;
+}
+
+.left-content h1{
+
+    color:#fff;
+
+    font-size:60px;
+    font-weight:700;
+
+    line-height:1.03;
+
+    letter-spacing:-1px;
+
+    margin-bottom:22px;
+}
+
+.left-content p{
+
+    color:
+    rgba(255,255,255,.72);
+
+    font-size:16px;
+    line-height:1.9;
+
+    margin-bottom:34px;
+}
+
+/* =========================
+   FEATURE BOXES
+========================= */
+
+.feature-boxes{
+
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+
+    width:350px;
+}
+
+.feature-card{
+
+    display:flex;
+    align-items:center;
+    gap:16px;
+
+    padding:
+    18px
+    20px;
+
+    background:
+    rgba(255,255,255,.07);
+
+    border:
+    1px solid
+    rgba(255,255,255,.06);
+
+    border-radius:24px;
+
+    backdrop-filter:
+    blur(12px);
+
+    box-shadow:
+    0 12px 28px
+    rgba(0,0,0,.18);
+
+    transition:.35s;
+}
+
+.feature-card:hover{
+
+    transform:
+    translateY(-4px);
+
+    background:
+    rgba(255,255,255,.10);
+
+    box-shadow:
+    0 18px 40px
+    rgba(0,0,0,.25);
+}
+
+.feature-card i{
+
+    width:56px;
+    height:56px;
+
+    border-radius:18px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(37,99,235,.40),
+        rgba(6,182,212,.22)
+    );
+
+    color:#bfdbfe;
+    font-size:22px;
+
+    flex-shrink:0;
+}
+
+.feature-card span{
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:500;
+
+    line-height:1.5;
+}
+
+/* ===== PART 1 END ===== */
+
+/* =========================
+   RIGHT PANEL
+========================= */
+
+.right-panel{
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(255,255,255,.98),
+        rgba(248,250,252,.96)
+    );
+
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:
+    42px
+    40px;
+}
+
+/* Soft Glow */
+
+.right-panel::before{
+
+    content:'';
+
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(37,99,235,.08),
+        transparent 70%
+    );
+
+    top:-60px;
+    right:-60px;
+
+    pointer-events:none;
+}
+
+/* =========================
+   LOGIN FORM
+========================= */
+
+.login-form{
+
+    width:100%;
+    max-width:360px;
+
+    position:relative;
+    z-index:2;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.form-header{
+
+    margin-bottom:28px;
+}
+
+.form-header h2{
+
+    color:#0f172a;
+
+    font-size:44px;
+    font-weight:700;
+
+    line-height:1.05;
+    letter-spacing:-1px;
+
+    margin-bottom:10px;
+}
+
+.form-header p{
+
+    color:#64748b;
+
+    font-size:14px;
+    line-height:1.8;
+}
+
+/* =========================
+   INPUT GROUP
+========================= */
+
+.input-group{
+
+    margin-bottom:20px;
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    color:#334155;
+
+    font-size:13px;
+    font-weight:600;
+
+    letter-spacing:.3px;
+}
+
+/* =========================
+   PREMIUM INPUT BOX
+========================= */
+
+.input-box{
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+
+    height:60px;
+
+    border-radius:20px;
+
+    background:
+    rgba(255,255,255,.92);
+
+    border:
+    1px solid
+    rgba(203,213,225,.85);
+
+    overflow:hidden;
+
+    transition:.35s;
+
+    box-shadow:
+    0 10px 25px
+    rgba(15,23,42,.05);
+}
+
+/* Hover */
+
+.input-box:hover{
+
+    border-color:#94a3b8;
+
+    transform:
+    translateY(-1px);
+
+    box-shadow:
+    0 16px 32px
+    rgba(15,23,42,.08);
+}
+
+/* Focus */
+
+.input-box:focus-within{
+
+    border-color:#2563eb;
+
+    background:#fff;
+
+    box-shadow:
+    0 0 0 5px
+    rgba(37,99,235,.10),
+    0 16px 34px
+    rgba(37,99,235,.10);
+}
+
+/* Icons */
+
+.input-box i{
+
+    width:58px;
+
+    text-align:center;
+
+    color:#94a3b8;
+    font-size:15px;
+
+    transition:.3s;
+}
+
+.input-box:focus-within i{
+
+    color:#2563eb;
+}
+
+/* Input + Select */
+
+.input-box input,
+.input-box select{
+
+    flex:1;
+
+    height:100%;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    padding:
+    0
+    18px
+    0
+    0;
+
+    color:#0f172a;
+
+    font-size:14px;
+    font-weight:500;
+
+    font-family:
+    'Poppins',
+    sans-serif;
+
+    appearance:none;
+}
+
+/* Placeholder */
+
+.input-box input::placeholder{
+
+    color:#94a3b8;
+}
+
+/* Select Arrow */
+
+.input-box::after{
+
+    content:'\f107';
+
+    font-family:
+    "Font Awesome 6 Free";
+
+    font-weight:900;
+
+    position:absolute;
+
+    right:18px;
+    top:50%;
+
+    transform:
+    translateY(-50%);
+
+    color:#94a3b8;
+
+    pointer-events:none;
+}
+
+/* =========================
+   OPTIONS
+========================= */
+
+.remember-box{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin:
+    6px 0
+    24px;
+}
+
+.remember-box label{
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    color:#64748b;
+    font-size:13px;
+}
+
+.remember-box input{
+
+    accent-color:#2563eb;
+}
+
+.remember-box a{
+
+    color:#2563eb;
+
+    text-decoration:none;
+
+    font-size:13px;
+    font-weight:600;
+}
+
+.remember-box a:hover{
+
+    text-decoration:underline;
+}
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.login-btn{
+
+    width:100%;
+    height:58px;
+
+    border:none;
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    box-shadow:
+    0 18px 35px
+    rgba(37,99,235,.30);
+}
+
+.login-btn:hover{
+
+    transform:
+    translateY(-3px);
+
+    box-shadow:
+    0 24px 45px
+    rgba(37,99,235,.38);
+}
+
+/* =========================
+   DEMO USERS
+========================= */
+
+.demo-users{
+
+    margin-top:22px;
+
+    padding:20px;
+
+    border-radius:22px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #f8fafc,
+        #f1f5f9
+    );
+
+    border:
+    1px solid
+    #e2e8f0;
+
+    box-shadow:
+    0 12px 26px
+    rgba(15,23,42,.05);
+}
+
+.demo-users h4{
+
+    color:#0f172a;
+
+    font-size:15px;
+    font-weight:700;
+
+    margin-bottom:14px;
+}
+
+.demo-user{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:10px 0;
+
+    border-bottom:
+    1px solid
+    #eef2f7;
+}
+
+.demo-user:last-child{
+
+    border:none;
+}
+
+.demo-role{
+
+    color:#334155;
+    font-size:13px;
+    font-weight:600;
+}
+
+.demo-cred{
+
+    color:#64748b;
+    font-size:12px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.login-footer{
+
+    margin-top:18px;
+
+    text-align:center;
+
+    color:#94a3b8;
+    font-size:12px;
+}
+
+/* =========================
+   LAPTOP FIT
+========================= */
+
+@media(max-height:820px){
+
+    .login-container{
+
+        height:86vh;
+        min-height:620px;
+    }
+
+    .left-content h1{
+
+        font-size:52px;
+    }
+
+    .feature-card{
+
+        padding:16px 18px;
+    }
+
+    .form-header h2{
+
+        font-size:38px;
+    }
+
+    .input-box{
+
+        height:56px;
+    }
+
+    .login-btn{
+
+        height:54px;
+    }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:1024px){
+
+    .login-container{
+
+        grid-template-columns:1fr;
+        width:94vw;
+        height:auto;
+    }
+
+    .left-panel{
+
+        padding:34px;
+    }
+
+    .right-panel{
+
+        padding:34px;
+    }
+
+    .left-content h1{
+
+        font-size:46px;
+    }
+
+    .feature-boxes{
+
+        width:100%;
+    }
+}

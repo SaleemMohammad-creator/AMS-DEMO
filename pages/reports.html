@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Reports | AMS</title>
+<link rel="icon" type="image/png" href="../assets/images/favicon.png">
+
+
+    <!-- Sidebar CSS -->
+    <link
+        rel="stylesheet"
+        href="../css/sidebar.css">
+
+    <!-- Reports CSS -->
+    <link
+        rel="stylesheet"
+        href="../css/reports.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <div class="top-bar">
+
+            <div class="header-text">
+                <h1>Reports & Analytics</h1>
+                <p>
+                    Attendance, leave and overtime insights
+                </p>
+            </div>
+
+            <div class="top-actions">
+
+                <input
+                    type="date"
+                    id="reportDate">
+
+                <button id="filterBtn">
+                    <i class="fa-solid fa-filter"></i>
+                    Filter
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- KPI Cards -->
+        <section class="stats-grid">
+
+            <!-- Staff -->
+            <div class="stat-card staff-card">
+
+                <div class="card-top">
+
+                    <div>
+                        <h4>Total Staff</h4>
+                        <h2 id="staffCount">0</h2>
+                    </div>
+
+                    <div class="card-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                </div>
+
+                <div
+                    class="mini-trend"
+                    id="staffTrend">
+                </div>
+
+            </div>
+
+            <!-- Attendance -->
+            <div
+                class="stat-card attendance-card">
+
+                <div class="card-top">
+
+                    <div>
+                        <h4>Attendance</h4>
+                        <h2 id="attendanceCount">0</h2>
+                    </div>
+
+                    <div class="card-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                </div>
+
+                <div
+                    class="mini-trend success"
+                    id="attendanceTrend">
+                </div>
+
+            </div>
+
+            <!-- Leaves -->
+            <div
+                class="stat-card leave-card">
+
+                <div class="card-top">
+
+                    <div>
+                        <h4>Leaves</h4>
+                        <h2 id="leaveCount">0</h2>
+                    </div>
+
+                    <div class="card-icon">
+                        <i class="fa-solid fa-calendar-xmark"></i>
+                    </div>
+
+                </div>
+
+                <div
+                    class="mini-trend warning"
+                    id="leaveTrend">
+                </div>
+
+            </div>
+
+            <!-- OT -->
+            <div
+                class="stat-card ot-card">
+
+                <div class="card-top">
+
+                    <div>
+                        <h4>OT Records</h4>
+                        <h2 id="otCount">0</h2>
+                    </div>
+
+                    <div class="card-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                </div>
+
+                <div
+                    class="mini-trend"
+                    id="otTrend">
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Charts -->
+        <section class="charts-grid">
+
+            <!-- Attendance -->
+            <div class="chart-card">
+
+                <div class="card-header">
+
+                    <h3>
+                        Attendance Trend
+                    </h3>
+
+                </div>
+
+                <canvas
+                    id="attendanceChart">
+                </canvas>
+
+            </div>
+
+            <!-- Leave Distribution -->
+            <div class="chart-card">
+
+                <div class="card-header">
+
+                    <h3>
+                        Leave Distribution
+                    </h3>
+
+                </div>
+
+                <canvas
+                    id="leaveChart">
+                </canvas>
+
+            </div>
+
+        </section>
+
+        <!-- Bottom -->
+        <section class="bottom-grid">
+
+            <!-- Department -->
+            <div class="chart-card">
+
+                <div class="card-header">
+
+                    <h3>
+                        Department Analytics
+                    </h3>
+
+                </div>
+
+                <canvas
+                    id="departmentChart">
+                </canvas>
+
+            </div>
+
+            <!-- Insights -->
+            <div
+                class="chart-card insights-card">
+
+                <div class="card-header">
+                    <h3>
+                        Smart Insights
+                    </h3>
+                </div>
+
+                <div
+                    id="insightsContainer">
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Scripts -->
+
+    <script src="../js/config.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/permissions.js"></script>
+<script src="../js/sidebar.js"></script>
+    <script src="../js/reports.js"></script>
+
+</body>
+</html>

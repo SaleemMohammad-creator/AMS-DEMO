@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Staff Management</title>
+<link rel="icon" type="image/png" href="../assets/images/favicon.png">
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/sidebar.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="../css/staff.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <section class="staff-header">
+
+            <!-- Left -->
+            <div class="header-left">
+
+                <h2>
+                    Staff Management
+                </h2>
+
+                <p>
+                    Manage employees and departments
+                </p>
+
+            </div>
+
+            <!-- Right -->
+            <div class="header-right">
+
+                <!-- Search -->
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        id="searchInput"
+                        type="text"
+                        placeholder="Search employee..."
+                    />
+
+                </div>
+
+                <!-- Add Employee -->
+                <button
+                    class="add-staff-btn"
+                    id="openModalBtn"
+                >
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add Employee
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Staff Table -->
+        <section class="table-section">
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Employee ID</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Department</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Joining Date</th>
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="staffTableBody">
+                    </tbody>
+
+                </table><div class="pagination"><button>Prev</button><button>1</button><button>2</button><button>Next</button></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         Employee Modal
+    ========================== -->
+
+    <div
+        class="modal-overlay"
+        id="modalOverlay"
+    >
+
+        <div class="staff-modal">
+
+            <!-- Header -->
+            <div class="modal-header">
+
+                <h3 id="modalTitle">
+                    Add Employee
+                </h3>
+
+                <button
+                    class="close-btn"
+                    id="closeModalBtn"
+                    type="button"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <!-- Form -->
+            <form id="staffForm">
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+
+                    <div class="form-grid">
+
+                        <!-- Employee ID -->
+                        <div class="input-group">
+
+                              <label>
+                                 Employee ID
+                             </label>
+
+                            <input
+                              id="employeeId"
+                              type="text"
+                              readonly
+                              required
+                              />
+
+                        </div>
+
+                        <!-- Full Name -->
+                        <div class="input-group">
+
+                            <label>
+                                Full Name
+                            </label>
+
+                            <input
+                                id="employeeName"
+                                type="text"
+                                required
+                            />
+
+                        </div>
+
+                        <!-- Role -->
+                        <div class="input-group">
+
+                            <label>
+                                Role
+                            </label>
+
+                            <input
+                                id="employeeRole"
+                                type="text"
+                                required
+                            />
+
+                        </div>
+
+                        <!-- Department -->
+                        <div class="input-group">
+
+                            <label>
+                                Department
+                            </label>
+
+                            <input
+                                id="employeeDepartment"
+                                type="text"
+                                required
+                            />
+
+                        </div>
+
+                        <!-- Email -->
+                        <div class="input-group">
+
+                            <label>
+                                Email
+                            </label>
+
+                            <input
+                                id="employeeEmail"
+                                type="email"
+                                required
+                            />
+
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="input-group">
+
+                            <label>
+                                Phone
+                            </label>
+
+                            <input
+                                id="employeePhone"
+                                type="text"
+                                required
+                            />
+
+                        </div>
+
+                        <!-- Joining Date -->
+                        <div class="input-group full-width">
+
+                            <label>
+                                Joining Date
+                            </label>
+
+                            <input
+                                id="joiningDate"
+                                type="date"
+                                required
+                            />
+
+                        </div>
+
+                    
+                        <!-- Payroll Section -->
+                        <div class="input-group full-width">
+                            <h4 style="margin:10px 0 0;color:#2563eb;">Payroll Information</h4>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Basic Salary</label>
+                            <input id="employeeSalary" type="number" placeholder="30000" required />
+                        </div>
+
+                        <div class="input-group">
+                            <label>OT Rate / Hour</label>
+                            <input id="employeeOTRate" type="number" placeholder="200" required />
+                        </div>
+
+                        <div class="input-group">
+                            <label>Allowance</label>
+                            <input id="employeeAllowance" type="number" placeholder="2000" value="0" />
+                        </div>
+
+                        <div class="input-group">
+                            <label>PF %</label>
+                            <input id="employeePF" type="number" placeholder="12" value="12" />
+                        </div>
+
+                        <div class="input-group">
+                            <label>ESI %</label>
+                            <input id="employeeESI" type="number" placeholder="0.75" value="0.75" />
+                        </div>
+
+                        <div class="input-group">
+                            <label>Payroll Status</label>
+                            <select id="employeePayrollStatus">
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+
+</div>
+
+                </div>
+
+
+                <!-- Footer Buttons -->
+                <div class="form-buttons">
+
+                    <button
+                        class="save-btn"
+                        type="submit"
+                    >
+                        Save Employee
+                    </button>
+
+                    <button
+                        class="reset-btn"
+                        id="resetBtn"
+                        type="reset"
+                    >
+                        Reset
+                    </button>
+
+                    <button
+                        class="cancel-btn"
+                        id="cancelBtn"
+                        type="button"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- JS -->
+<script src="../js/config.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/permissions.js"></script>
+<script src="../js/sidebar.js"></script>
+<script src="../js/staff.js"></script>
+
+</body>
+</html>

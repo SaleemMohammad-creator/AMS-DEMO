@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leave & Benefits Management</title>
+<link rel="icon" type="image/png" href="../assets/images/favicon.png">
+<link rel="stylesheet" href="../css/sidebar.css">
+<link rel="stylesheet" href="../css/leave-credits.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<div id="sidebar-container"></div>
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+
+<main class="main-content">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <section class="leave-header">
+
+        <div class="header-left">
+
+            <h2>
+                Leave & Benefits Management
+            </h2>
+
+            <p>
+                Manage employee leave requests,
+                approvals and benefits
+            </p>
+
+        </div>
+
+        <div class="header-right">
+
+            <button
+                class="apply-btn"
+                id="openLeaveModalBtn"
+            >
+
+                <i
+                    class="fa-solid
+                    fa-calendar-plus"
+                ></i>
+
+                Apply Leave
+
+            </button>
+
+            <button
+                class="benefit-btn"
+                id="openBenefitModalBtn"
+            >
+
+                <i
+                    class="fa-solid
+                    fa-gift"
+                ></i>
+
+                Special Benefit
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+         SUMMARY SECTION
+    ========================== -->
+
+    <section class="summary-section">
+
+        <div class="section-title">
+
+            <h3>
+                Employee Leave Summary
+            </h3>
+
+        </div>
+
+        <div class="summary-grid">
+
+            <!-- Leaves Taken -->
+
+            <div class="summary-card">
+
+                <div
+                    class="card-icon red"
+                >
+
+                    <i
+                        class="fa-solid
+                        fa-calendar-minus"
+                    ></i>
+
+                </div>
+
+                <div class="card-info">
+
+                    <span>
+                        LEAVES TAKEN
+                    </span>
+
+                    <h3
+                        id="takenLeavesCard"
+                    >
+                        0
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <!-- Balance -->
+
+            <div class="summary-card">
+
+                <div
+                    class="card-icon green"
+                >
+
+                    <i
+                        class="fa-solid
+                        fa-wallet"
+                    ></i>
+
+                </div>
+
+                <div class="card-info">
+
+                    <span>
+                        BALANCE
+                    </span>
+
+                    <h3
+                        id="balanceCard"
+                    >
+                        0
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <!-- Pending -->
+
+            <div class="summary-card">
+
+                <div
+                    class="card-icon orange"
+                >
+
+                    <i
+                        class="fa-solid
+                        fa-clock"
+                    ></i>
+
+                </div>
+
+                <div class="card-info">
+
+                    <span>
+                        PENDING
+                    </span>
+
+                    <h3
+                        id="pendingCard"
+                    >
+                        0
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <!-- LOP -->
+
+            <div class="summary-card">
+
+                <div
+                    class="card-icon purple"
+                >
+
+                    <i
+                        class="fa-solid
+                        fa-triangle-exclamation"
+                    ></i>
+
+                </div>
+
+                <div class="card-info">
+
+                    <span>
+                        LOP
+                    </span>
+
+                    <h3
+                        id="lopCard"
+                    >
+                        0
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <!-- Alerts -->
+
+            <div class="summary-card">
+
+                <div
+                    class="card-icon red"
+                >
+
+                    <i
+                        class="fa-solid
+                        fa-bell"
+                    ></i>
+
+                </div>
+
+                <div class="card-info">
+
+                    <span>
+                        ALERTS
+                    </span>
+
+                    <h3
+                        id="alertCard"
+                    >
+                        0
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+         FILTERS
+    ========================== -->
+
+   <section class="leave-toolbar-section">
+
+    <div class="records-title">
+
+        <h3>
+            Leave Records
+        </h3>
+
+    </div>
+
+    <div class="toolbar-controls">
+
+        <!-- Search -->
+
+        <div class="premium-search">
+
+            <i
+                class="fa-solid fa-magnifying-glass"
+            ></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search Employee ID / Employee Name"
+            >
+
+        </div>
+
+        <!-- Month -->
+
+        <div class="premium-month">
+
+            <i
+                class="fa-regular fa-calendar"
+            ></i>
+
+            <input
+                type="month"
+                id="monthFilter"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- =========================
+         LEAVE REQUESTS
+    ========================== -->
+
+    <section class="table-section">
+
+        <div class="section-header">
+
+            <h3>
+                Leave Requests
+            </h3>
+
+        </div>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Emp ID
+                        </th>
+
+                        <th>
+                            Employee
+                        </th>
+
+                        <th>
+                            Leave Type
+                        </th>
+
+                        <th>
+                            From
+                        </th>
+
+                        <th>
+                            To
+                        </th>
+
+                        <th>
+                            Days
+                        </th>
+
+                        <th>
+                            Credit
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Alert
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody
+                    id="leaveTableBody"
+                >
+
+                </tbody>
+
+            </table>
+
+            <!-- Pagination -->
+
+            <div
+                class="pagination"
+            >
+
+                <button>
+                    Prev
+                </button>
+
+                <button
+                    class="active"
+                >
+                    1
+                </button>
+
+                <button>
+                    2
+                </button>
+
+                <button>
+                    Next
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+     MONTHLY LEAVE LEDGER
+========================= -->
+
+<section class="ledger-section">
+
+    <div class="section-header">
+
+        <h3>
+            Monthly Leave Ledger
+        </h3>
+
+    </div>
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Month
+                    </th>
+
+                    <th>
+                        Opening
+                    </th>
+
+                    <th>
+                        Added
+                    </th>
+
+                    <th>
+                        Used
+                    </th>
+
+                    <th>
+                        Expired
+                    </th>
+
+                    <th>
+                        Closing
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody
+                id="ledgerBody"
+            >
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- =========================
+     APPLY LEAVE MODAL
+========================= -->
+
+<div
+    class="modal-overlay"
+    id="leaveModal"
+>
+
+    <div
+        class="leave-modal"
+    >
+
+        <!-- Header -->
+
+        <div
+            class="modal-header"
+        >
+
+            <h3>
+                Apply Leave
+            </h3>
+
+            <button
+                type="button"
+                class="close-btn"
+                id="closeLeaveModal"
+            >
+
+                <i
+                    class="fa-solid
+                    fa-xmark"
+                ></i>
+
+            </button>
+
+        </div>
+
+        <!-- Form -->
+
+        <form
+            id="leaveForm"
+        >
+
+            <div
+                class="modal-body"
+            >
+
+                <!-- Employee -->
+
+                <div
+                    class="input-group"
+                >
+
+                    <label>
+                        Select Employee
+                    </label>
+
+                    <select
+                        id="employeeSelect"
+                        required
+                    >
+
+                        <option value="">
+                            Select Employee
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Leave Type -->
+
+                <div
+                    class="input-group"
+                >
+
+                    <label>
+                        Leave Type
+                    </label>
+
+                    <select
+                        id="leaveType"
+                        required
+                    >
+
+                        <option value="">
+                            Select Leave Type
+                        </option>
+
+                        <option>
+                            Casual Leave
+                        </option>
+
+                        <option>
+                            Sick Leave
+                        </option>
+
+                        <option>
+                            Emergency Leave
+                        </option>
+
+                        <option>
+                            Paid Leave
+                        </option>
+
+                        <option>
+                            Half Day
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Date Row -->
+
+                <div
+                    class="date-row"
+                >
+
+                    <div
+                        class="input-group"
+                    >
+
+                        <label>
+                            From Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="fromDate"
+                            required
+                        >
+
+                    </div>
+
+                    <div
+                        class="input-group"
+                    >
+
+                        <label>
+                            To Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="toDate"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <!-- Remarks -->
+
+                <div
+                    class="
+                    input-group
+                    remarks-group
+                    "
+                >
+
+                    <label>
+                        Remarks
+                    </label>
+
+                    <textarea
+                        id="leaveRemarks"
+                        placeholder="
+                        Reason / Remarks
+                        "
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+            <!-- Actions -->
+
+            <div
+                class="modal-actions"
+            >
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                >
+                    Apply Leave
+                </button>
+
+                <button
+                    type="reset"
+                    class="reset-btn"
+                >
+                    Reset
+                </button>
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelLeaveBtn"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     SPECIAL BENEFIT MODAL
+========================= -->
+
+<div
+    class="modal-overlay"
+    id="benefitModal"
+>
+
+    <div
+        class="leave-modal"
+    >
+
+        <!-- Header -->
+
+        <div
+            class="modal-header"
+        >
+
+            <h3>
+                Special Benefit
+            </h3>
+
+            <button
+                type="button"
+                class="close-btn"
+                id="closeBenefitModal"
+            >
+
+                <i
+                    class="fa-solid
+                    fa-xmark"
+                ></i>
+
+            </button>
+
+        </div>
+
+        <!-- Form -->
+
+        <form
+            id="benefitForm"
+        >
+
+            <div
+                class="modal-body"
+            >
+
+                <!-- Employee -->
+
+                <div
+                    class="input-group"
+                >
+
+                    <label>
+                        Employee
+                    </label>
+
+                    <select
+                        id="benefitEmployee"
+                        required
+                    >
+
+                        <option value="">
+                            Select Employee
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Worked On -->
+
+                <div
+                    class="input-group"
+                >
+
+                    <label>
+                        Worked On
+                    </label>
+
+                    <select
+                        id="workedOn"
+                        required
+                    >
+
+                        <option value="">
+                            Select Day
+                        </option>
+
+                        <option>
+                            Sunday
+                        </option>
+
+                        <option>
+                            2nd Saturday
+                        </option>
+
+                        <option>
+                            Company Holiday
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Benefit Type -->
+
+                <div
+                    class="input-group"
+                >
+
+                    <label>
+                        Benefit Type
+                    </label>
+
+                    <select
+                        id="benefitType"
+                        required
+                    >
+
+                        <option value="">
+                            Select Benefit
+                        </option>
+
+                        <option>
+                            Week Off
+                        </option>
+
+                        <option>
+                            Extra Pay
+                        </option>
+
+                        <option>
+                            Extra Credit (+1)
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Date -->
+
+                <div
+                    class="input-group"
+                >
+
+                    <label>
+                        Work Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="benefitDate"
+                        required
+                    >
+
+                </div>
+
+                <!-- Remarks -->
+
+                <div
+                    class="
+                    input-group
+                    remarks-group
+                    "
+                >
+
+                    <label>
+                        Remarks
+                    </label>
+
+                    <textarea
+                        id="benefitRemarks"
+                        placeholder="
+                        Remarks
+                        "
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+            <!-- Actions -->
+
+            <div
+                class="modal-actions"
+            >
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                >
+                    Save Benefit
+                </button>
+
+                <button
+                    type="reset"
+                    class="reset-btn"
+                >
+                    Reset
+                </button>
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelBenefitBtn"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     JS FILES
+========================= -->
+
+<script src="../js/config.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/permissions.js"></script>
+<script src="../js/sidebar.js"></script>
+<script src="../js/leave-credits.js"></script>
+
+</body>
+</html>

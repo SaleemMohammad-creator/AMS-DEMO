@@ -1,0 +1,378 @@
+.sidebar,
+.sidebar *{font-family:'Poppins',sans-serif;}
+.sidebar{
+
+    width:290px;
+
+    height:100vh;
+
+    position:fixed;
+
+    left:0;
+    top:0;
+
+    background:
+    linear-gradient(
+        180deg,
+        #020617,
+        #0f172a,
+        #1e3a8a
+    );
+
+    padding:25px 18px;
+
+    display:flex;
+    flex-direction:column;
+
+    color:white;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    z-index:1000;
+
+    transition:0.4s;
+}
+
+/* =========================
+   Custom Scrollbar
+========================= */
+
+.sidebar::-webkit-scrollbar{
+
+    width:6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+
+    background:
+    rgba(255,255,255,0.18);
+
+    border-radius:20px;
+}
+
+/* =========================
+   Logo
+========================= */
+
+.logo-section{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    margin-bottom:45px;
+
+    flex-shrink:0;
+}
+
+.logo-icon{
+
+    width:55px;
+    height:55px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+
+    font-size:24px;
+
+    box-shadow:
+    0 10px 25px rgba(37,99,235,0.4);
+}
+
+.logo-text h2{
+
+    font-size:28px;
+    font-weight:700;
+
+    margin-bottom:2px;
+}
+
+.logo-text span{
+
+    font-size:13px;
+
+    color:#cbd5e1;
+}
+
+/* =========================
+   Sidebar Menu
+========================= */
+
+.sidebar-menu{
+
+    list-style:none;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:10px;
+
+    flex:1;
+}
+
+/* =========================
+   Menu Links
+========================= */
+
+.sidebar-menu li a{
+
+    height:58px;
+
+    display:flex;
+    align-items:center;
+    gap:16px;
+
+    padding:0 18px;
+
+    border-radius:18px;
+
+    color:white;
+
+    text-decoration:none;
+
+    transition:0.3s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+/* Hover Overlay */
+
+.sidebar-menu li a::before{
+
+    content:'';
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    opacity:0;
+
+    transition:0.3s;
+}
+
+.sidebar-menu li a:hover::before{
+
+    opacity:1;
+}
+
+/* Hover Effect */
+
+.sidebar-menu li a:hover{
+
+    transform:translateX(6px);
+}
+
+/* Icons */
+
+.sidebar-menu li a i{
+
+    font-size:18px;
+
+    position:relative;
+
+    z-index:2;
+
+    min-width:20px;
+}
+
+/* Text */
+
+.sidebar-menu li a span{
+
+    position:relative;
+
+    z-index:2;
+
+    font-size:15px;
+    font-weight:600;
+
+    white-space:nowrap;
+}
+
+/* =========================
+   Active Menu
+========================= */
+
+.sidebar-menu li.active a{
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+
+    box-shadow:
+    0 10px 20px rgba(37,99,235,0.35);
+}
+
+/* =========================
+   Sidebar Bottom
+========================= */
+
+.sidebar-bottom{
+
+    margin-top:25px;
+
+    padding-bottom:10px;
+
+    flex-shrink:0;
+}
+
+/* Logout Button */
+
+.sidebar-bottom a{
+
+    height:58px;
+
+    display:flex;
+    align-items:center;
+    gap:16px;
+
+    padding:0 18px;
+
+    border-radius:18px;
+
+    color:white;
+
+    text-decoration:none;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    transition:0.3s;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+/* Logout Hover */
+
+.sidebar-bottom a:hover{
+
+    background:#ef4444;
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 10px 20px rgba(239,68,68,0.3);
+}
+
+/* Logout Icon */
+
+.sidebar-bottom a i{
+
+    font-size:18px;
+
+    min-width:20px;
+}
+
+/* Logout Text */
+
+.sidebar-bottom a span{
+
+    font-size:15px;
+    font-weight:500;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media(max-width:1200px){
+
+    .sidebar{
+
+        width:95px;
+
+        padding:20px 12px;
+    }
+
+    .logo-text,
+    .sidebar-menu li a span,
+    .sidebar-bottom a span{
+
+        display:none;
+    }
+
+    .sidebar-menu li a,
+    .sidebar-bottom a{
+
+        justify-content:center;
+
+        padding:0;
+    }
+
+    .logo-section{
+
+        justify-content:center;
+    }
+
+    .sidebar-menu li a:hover{
+
+        transform:none;
+    }
+}
+
+/* =========================
+   Mobile Sidebar
+========================= */
+
+@media(max-width:768px){
+
+    .sidebar{
+
+        left:-290px;
+
+        width:290px;
+
+        padding:25px 18px;
+    }
+
+    .sidebar.showSidebar{
+
+        left:0;
+    }
+
+    .logo-text,
+    .sidebar-menu li a span,
+    .sidebar-bottom a span{
+
+        display:block;
+    }
+
+    .sidebar-menu li a,
+    .sidebar-bottom a{
+
+        justify-content:flex-start;
+
+        padding:0 18px;
+    }
+
+    .logo-section{
+
+        justify-content:flex-start;
+    }
+}
+
+
+
+/* Consistent sidebar typography */
+.sidebar-menu li a span,.sidebar-bottom a span{font-weight:600 !important;letter-spacing:.2px;}

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AMS Login</title>
+
+    <link
+    rel="icon"
+    type="image/png"
+    href="assets/images/favicon.png"
+    >
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="css/login.css"
+    >
+
+    <!-- Google Fonts -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div class="background-shapes">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+    <!-- Login Container -->
+    <div class="login-container">
+
+        <!-- Left Panel -->
+        <div class="left-panel">
+
+            <!-- Logo -->
+            <div class="logo-area">
+
+                <i class="fa-solid fa-users"></i>
+                <h2>AMS</h2>
+
+            </div>
+
+            <!-- Content -->
+            <div class="left-content">
+
+                <h1>
+                    Attendance
+                    Management
+                    System
+                </h1>
+
+                <p>
+                    Smart attendance tracking,
+                    payroll management,
+                    leave credits,
+                    and employee analytics
+                    in one professional dashboard.
+                </p>
+
+                <!-- Features -->
+                <div class="feature-boxes">
+
+                    <div class="feature-card">
+
+                        <i class="fa-solid fa-calendar-check"></i>
+
+                        <span>
+                            Attendance Tracking
+                        </span>
+
+                    </div>
+
+                    <div class="feature-card">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                        <span>
+                            Reports & Analytics
+                        </span>
+
+                    </div>
+
+                    <div class="feature-card">
+
+                        <i class="fa-solid fa-wallet"></i>
+
+                        <span>
+                            Leave Credits
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+
+            <form
+                id="loginForm"
+                class="login-form"
+            >
+
+                <!-- Header -->
+                <div class="form-header">
+
+                    <h2>
+                        Welcome Back
+                    </h2>
+
+                    <p>
+                        Login to continue
+                    </p>
+
+                </div>
+
+                <!-- Role -->
+                <div class="input-group">
+
+                    <label>
+                        Login As
+                    </label>
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-user-shield"></i>
+
+                        <select id="role">
+
+                            <option value="admin">
+                                Admin
+                            </option>
+
+                            <option value="hr">
+                                HR
+                            </option>
+
+                            <option value="employee">
+                                Employee
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- Username -->
+                <div class="input-group">
+
+                    <label>
+                        Username
+                    </label>
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="Enter Username"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <!-- Password -->
+                <div class="input-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter Password"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <!-- Remember -->
+                <div class="remember-box">
+
+                    <label>
+
+                        <input type="checkbox">
+
+                        Remember Me
+
+                    </label>
+
+                    <a href="#">
+                        Forgot Password?
+                    </a>
+
+                </div>
+
+                <!-- Login Button -->
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
+                    Login
+                </button>
+
+                <!-- Demo Credentials -->
+                <div class="demo-users">
+
+                    <p>
+                        Demo Credentials
+                    </p>
+
+                    <span>
+                        Admin :
+                        admin / admin123
+                    </span>
+
+                    <span>
+                        HR :
+                        hr / hr123
+                    </span>
+
+                    <span>
+                        Employee :
+                        employee / emp123
+                    </span>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="js/config.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/login.js"></script>
+
+</body>
+</html>

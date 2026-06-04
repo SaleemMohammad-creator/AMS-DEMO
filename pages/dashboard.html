@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>AMS Dashboard</title>
+<link rel="icon" type="image/png" href="../assets/images/favicon.png">
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/sidebar.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Dashboard Cards -->
+        <section class="cards-grid">
+
+            <!-- Present -->
+            <div class="dashboard-card">
+                <div class="card-icon green">
+                    <i class="fa-solid fa-user-check"></i>
+                </div>
+
+                <div class="card-info">
+                    <span>PRESENT</span>
+                    <h3 id="presentEmployees">0</h3>
+                </div>
+            </div>
+
+            <!-- Half Day -->
+            <div class="dashboard-card">
+                <div class="card-icon orange">
+                    <i class="fa-solid fa-person-half-dress"></i>
+                </div>
+
+                <div class="card-info">
+                    <span>HALF DAY LEAVE</span>
+                    <h3 id="halfDayEmployees">0</h3>
+                </div>
+            </div>
+
+            <!-- Full Day -->
+            <div class="dashboard-card">
+                <div class="card-icon red">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <div class="card-info">
+                    <span>FULL DAY LEAVE</span>
+                    <h3 id="fullLeaveEmployees">0</h3>
+                </div>
+            </div>
+
+            <!-- Week Off -->
+            <div class="dashboard-card">
+                <div class="card-icon purple">
+                    <i class="fa-solid fa-calendar-week"></i>
+                </div>
+
+                <div class="card-info">
+                    <span>WEEK OFF</span>
+                    <h3 id="weekOffEmployees">0</h3>
+                </div>
+            </div>
+
+            <!-- Total Employees -->
+            <div class="dashboard-card">
+                <div class="card-icon blue">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <div class="card-info">
+                    <span>TOTAL EMPLOYEES</span>
+                    <h3 id="totalEmployees">0</h3>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Dashboard Grid -->
+        <section class="dashboard-grid">
+
+            <!-- Attendance Overview -->
+            <section class="table-section">
+
+                <div class="section-header overview-header">
+
+                    <h3>Attendance Overview</h3>
+
+                    <div class="overview-controls">
+
+                        <input
+                            id="overviewSearch"
+                            type="text"
+                            placeholder="Search by ID / Employee Name"
+                        />
+
+                        <input
+                            id="overviewDate"
+                            type="date"
+                        />
+
+                    </div>
+
+                </div>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Emp ID</th>
+                                <th>Name</th>
+                                <th>Dept</th>
+                                <th>Designation</th>
+                                <th>Login</th>
+                                <th>Break</th>
+                                <th>Logout</th>
+                                <th>Working Hours</th>
+                                <th>Status</th>
+                                <th>Credits</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="overviewTableBody"></tbody>
+
+                    </table><div class="pagination"><button>Prev</button><button>1</button><button>2</button><button>Next</button></div>
+
+                </div>
+
+            </section>
+
+            <!-- Bottom Dashboard Section -->
+            <section class="dashboard-bottom-section">
+
+                <div class="summary-grid">
+
+                    <!-- Leave Credits Summary -->
+                    <div class="summary-card">
+
+                        <h3>Leave Credits Summary</h3>
+
+                        <div class="summary-content">
+
+                            <canvas
+                                id="leaveCreditsChart"
+                                height="120"
+                            ></canvas>
+
+                            <div class="legend-box">
+
+                                <div>
+                                    <span class="dot green"></span>
+                                    Positive Credits
+                                </div>
+
+                                <div>
+                                    <span class="dot gray"></span>
+                                    Zero Credits
+                                </div>
+
+                                <div>
+                                    <span class="dot red"></span>
+                                    Negative Credits
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Negative Credits -->
+                    <div class="summary-card">
+
+                        <h3>Negative Credits</h3>
+
+                        <table class="mini-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Emp ID</th>
+                                    <th>Name</th>
+                                    <th>Credits</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="negativeCreditsBody"></tbody>
+
+                        </table>
+
+                    </div>
+
+                    <!-- OT Records -->
+                    <div class="summary-card">
+
+                        <h3>OT / Pay Records</h3>
+
+                        <table class="mini-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Emp ID</th>
+                                    <th>Date</th>
+                                    <th>OT Hrs</th>
+                                    <th>Mode</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="otRecordsBody"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <!-- Alert Bar -->
+                <div class="dashboard-alert-bar">
+                    <span id="systemUpdateStatus"></span>
+                    <span id="negativeAlertCount"></span>
+                </div>
+
+            </section>
+
+        </section>
+
+</main>
+
+<!-- OT Details Modal -->
+
+<div id="otModal" class="modal-overlay">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h3>
+                OT Details
+            </h3>
+
+            <button
+                class="close-modal"
+                onclick="closeOTModal()">
+
+                &times;
+            </button>
+
+        </div>
+
+        <div id="otModalContent">
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- JS -->
+<script src="../js/config.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/permissions.js"></script>
+<script src="../js/sidebar.js"></script>
+<script src="../js/dashboard.js"></script>
+
+</body>
+</html>
