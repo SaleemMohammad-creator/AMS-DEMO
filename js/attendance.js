@@ -388,44 +388,81 @@ saveAttendanceBtn
            Validation
         ========================= */
 
-        if(
-            !login ||
-            !logout ||
-            !date
-        ){
+        if(!date){
 
-            Utils.toast(
-                 'Complete all required fields',
-                'warning'
-           );
-            return;
-        }
+        Utils.toast(
+          'Select Attendance Date',
+          'warning'
+       );
+
+      return;
+    }
+
+     const attendanceType =
+     document.getElementById(
+    'attendanceType'
+   ).value;
+
+/* Login & Logout required only for working days */
+
+    if(
+
+    attendanceType !== 'Week Off'
+
+    &&
+
+    attendanceType !== 'Holiday'
+
+   ){
+
+    if(
+        !login ||
+        !logout
+    ){
+
+        Utils.toast(
+            'Login and Logout Time Required',
+            'warning'
+        );
+
+        return;
+    }
+}
 
         /* =========================
-   Login / Logout Validation
-========================= */
+         Login / Logout Validation
+     ========================= */
+
+    if(
+    attendanceType !== 'Week Off'
+    &&
+    attendanceType !== 'Holiday'
+    ){
 
     const loginTime =
-        new Date(
-       `2025-01-01T${login}`
-      );
-
-    const logoutTime =
-      new Date(
-    `2025-01-01T${logout}`
-   );
-
-   if(
-    logoutTime <= loginTime
-  ){
-
-    Utils.toast(
-        'Logout Time Must Be Greater Than Login Time',
-        'error'
+    new Date(
+        `2025-01-01T${login}`
     );
 
-    return;
+    const logoutTime =
+    new Date(
+        `2025-01-01T${logout}`
+    );
+
+    if(
+        logoutTime <= loginTime
+    ){
+
+        Utils.toast(
+            'Logout Time Must Be Greater Than Login Time',
+            'error'
+        );
+
+        return;
+    }
 }
+
+    
 
 
         /* =========================
@@ -461,96 +498,150 @@ saveAttendanceBtn
             return;
         }
 
+ 
+     /* =========================
+   Break Calculation
+========================= */
 
-        /* =========================
-           Break Calculation
-        ========================= */
+     let breakHours =
+       0;
 
-        let breakHours =
-            0;
+      let breakText =
+       '';
 
-        let breakText =
-            '';
+     let invalidBreak =
+     false;
 
-        document
-        .querySelectorAll(
-            '.break-row'
-        )
-        .forEach(
-            row => {
+   document
+   .querySelectorAll(
+    '.break-row'
+     )
+  .forEach(
+    row => {
 
-            const start =
+        const start =
 
-            row.querySelector(
-                '.breakStart'
-            )?.value;
+        row.querySelector(
+            '.breakStart'
+        )?.value;
 
-            const end =
+        const end =
 
-            row.querySelector(
-                '.breakEnd'
-            )?.value;
+        row.querySelector(
+            '.breakEnd'
+        )?.value;
 
         if(
-          start &&
-          end
-       ){
+            start &&
+            end
+        ){
 
-    const breakStart =
-    new Date(
-        `2025-01-01T${start}`
-    );
+            const breakStart =
+            new Date(
+                `2025-01-01T${start}`
+            );
 
-    const breakEnd =
-    new Date(
-        `2025-01-01T${end}`
-    );
+            const breakEnd =
+            new Date(
+                `2025-01-01T${end}`
+            );
 
-    if(
-        breakEnd <= breakStart
-    ){
+            /* Break Validation */
 
-        Utils.toast(
-            'Break End Time Must Be Greater Than Break Start Time',
-            'error'
-        );
+            if(
+                breakEnd <= breakStart
+            ){
 
-        return;
+                Utils.toast(
+                    'Break End Time Must Be Greater Than Break Start Time',
+                    'error'
+                );
+
+                invalidBreak =
+                    true;
+
+                return;
+            }
+
+            /* Optional:
+               Break must be between Login & Logout
+            */
+
+            if(
+                login &&
+                logout
+            ){
+
+                const loginTime =
+                new Date(
+                    `2025-01-01T${login}`
+                );
+
+                const logoutTime =
+                new Date(
+                    `2025-01-01T${logout}`
+                );
+
+                if(
+                    breakStart < loginTime
+                    ||
+                    breakEnd > logoutTime
+                ){
+
+                    Utils.toast(
+                        'Break Time Must Be Between Login And Logout Time',
+                        'error'
+                    );
+
+                    invalidBreak =
+                        true;
+
+                    return;
+                }
+            }
+
+            breakHours +=
+
+            diffHours(
+                start,
+                end
+            );
+
+            breakText +=
+
+            `${start}-${end} `;
+        }
     }
+);
 
-       breakHours +=
+/* Stop Save If Invalid Break */
 
-        diffHours(
-        start,
-        end
-      );
+if(
+    invalidBreak
+){
 
-    breakText +=
-
-    `${start}-${end} `;
-   }
-
-
-});
+    return;
+}
 
 
         /* =========================
            Working Hours
         ========================= */
 
-        let workHours =
-
-        diffHours(
-            login,
-            logout
-        ) - breakHours;
+        let workHours = 0;
 
         if(
-            workHours < 0
+          login &&
+         logout
         ){
 
-            workHours = 0;
-        }
+      workHours =
+
+      diffHours(
+        login,
+        logout
+    ) - breakHours;
+}
 
 
         /* =========================
@@ -672,8 +763,9 @@ if (
     dept:
         emp.department || '',
 
-    login,
-    logout,
+    login: login || '-',
+    logout: logout || '-',
+    
     date,
 
     break:
@@ -831,13 +923,12 @@ if(
 );
 
 /* =========================
-   Dashboard Cards
+   Update Dashboard cards
 ========================= */
 
 function updateCards(data){
 
     const cards =
-
     document.querySelectorAll(
         '.dashboard-card h3'
     );
@@ -849,50 +940,61 @@ function updateCards(data){
     let ot = 0;
     let late = 0;
 
-    data.forEach(
-        r => {
+    data.forEach(r => {
+
+        const status =
+        (r.status || '');
+
+        const type =
+        (r.type || '');
+
+        /* Late */
 
         if(
-            r.status?.includes(
-                'Late'
-            )
-        ) late++;
-
-        if(
-            r.status?.includes(
-                'Half'
-            )
-        ) half++;
-
-        if(
-            r.type ===
-            'Leave'
-        ) leave++;
-
-        if(
-            r.type ===
-            'Week Off'
-        ) week++;
-
-        if(
-
-            r.type ===
-            'Present'
-
-            ||
-
-            r.status?.includes(
-                'Late'
-            )
-
+            status.includes('Late')
         ){
+            late++;
+        }
 
+        /* Half Day */
+
+        if(
+            status.includes('Half')
+        ){
+            half++;
+        }
+
+        /* Week Off */
+
+        if(
+            type === 'Week Off'
+            ||
+            status.includes('Week Off')
+        ){
+            week++;
+        }
+
+        /* Leave */
+
+        if(
+            type === 'Holiday'
+            ||
+            status.includes('Leave')
+        ){
+            leave++;
+        }
+
+        /* Present */
+
+        if(
+            status === 'Present'
+            ||
+            status === 'Late Login'
+        ){
             present++;
         }
 
-        ot +=
-
-        parseFloat(
+        ot += parseFloat(
             r.ot || 0
         );
     });
@@ -1200,18 +1302,18 @@ function(index){
         r.date;
 
     document
-    .getElementById(
-        'loginTimeModal'
+      .getElementById(
+      'loginTimeModal'
     )
     .value =
-        r.login;
+    r.login === '-' ? '' : r.login;
 
-    document
-    .getElementById(
-        'logoutTimeModal'
-    )
-    .value =
-        r.logout;
+   document
+   .getElementById(
+    'logoutTimeModal'
+  )
+   .value =
+    r.logout === '-' ? '' : r.logout;
 
     document
     .getElementById(
