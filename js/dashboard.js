@@ -24,6 +24,11 @@ Storage.get(
     CONFIG.KEYS.LEAVE_REQUESTS
 );
 
+console.log(
+    'Leave Requests:',
+    leaveRequests
+);
+
 
 /* =========================
    Dashboard Card Elements
@@ -106,12 +111,8 @@ document.getElementById(
 
 function updateDashboardCards(){
 
-    if(
-        totalEmployees
-    ){
-
+    if(totalEmployees){
         totalEmployees.textContent =
-
             staffData.length;
     }
 
@@ -120,112 +121,145 @@ function updateDashboardCards(){
     let leave = 0;
     let week = 0;
 
-    attendanceData.forEach(
-        record => {
+    /* Employee Final Status */
+
+    const employeeStatus = {};
+
+    /* Attendance */
+
+    attendanceData.forEach(record => {
+
+        const empId =
+            record.empId;
 
         const status =
-
             (
                 record.status || ''
             )
             .toLowerCase();
 
-        const type =
+        employeeStatus[empId] =
+            status;
+    });
 
+    /* Approved Leave Overrides Attendance */
+
+    leaveRequests.forEach(item => {
+
+        const approvalStatus =
             (
-                record.type || ''
+                item.status || ''
             )
             .toLowerCase();
 
-        /* Present */
+        if(
+            approvalStatus !==
+            'approved'
+        ){
+            return;
+        }
+
+        const empId =
+            item.empId;
+
+        const leaveType =
+            (
+                item.leaveType ||
+                item.leaveCategory ||
+                item.requestType ||
+                item.type ||
+                ''
+            )
+            .toLowerCase();
+
+        /* Week Off */
+
+        if(
+            leaveType.includes('week')
+        ){
+
+            employeeStatus[empId] =
+                'week off';
+        }
+
+        /* Sick Leave / Casual Leave / Annual Leave */
+
+        else if(
+            leaveType.includes('leave')
+        ){
+
+            employeeStatus[empId] =
+                'full day leave';
+        }
+    });
+
+    /* Final Count */
+
+    Object.values(
+        employeeStatus
+    ).forEach(status => {
 
         if(
 
-            type ===
-            'present'
+            status.includes('present')
 
             ||
 
-            status.includes(
-                'late'
-            )
+            status.includes('late')
 
         ){
 
             present++;
         }
 
-        /* Half */
+        else if(
 
-        if(
-
-            status.includes(
-                'half'
-            )
+            status.includes('half')
 
         ){
 
             half++;
         }
 
-        /* Leave */
+        else if(
 
-        if(
-
-            type ===
-            'leave'
-
-        ){
-
-            leave++;
-        }
-
-        /* Week */
-
-        if(
-
-            type ===
-            'week off'
+            status.includes('week')
 
         ){
 
             week++;
         }
+
+        else if(
+
+            status.includes('leave')
+
+        ){
+
+            leave++;
+        }
     });
 
-    if(
-        presentEmployees
-    ){
-
+    if(presentEmployees){
         presentEmployees.textContent =
             present;
     }
 
-    if(
-        halfDayEmployees
-    ){
-
+    if(halfDayEmployees){
         halfDayEmployees.textContent =
             half;
     }
 
-    if(
-        fullLeaveEmployees
-    ){
-
+    if(fullLeaveEmployees){
         fullLeaveEmployees.textContent =
             leave;
     }
 
-    if(
-        weekOffEmployees
-    ){
-
+    if(weekOffEmployees){
         weekOffEmployees.textContent =
             week;
     }
 }
-
 
 /* =========================
    Status Badge

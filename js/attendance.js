@@ -401,6 +401,32 @@ saveAttendanceBtn
             return;
         }
 
+        /* =========================
+   Login / Logout Validation
+========================= */
+
+    const loginTime =
+        new Date(
+       `2025-01-01T${login}`
+      );
+
+    const logoutTime =
+      new Date(
+    `2025-01-01T${logout}`
+   );
+
+   if(
+    logoutTime <= loginTime
+  ){
+
+    Utils.toast(
+        'Logout Time Must Be Greater Than Login Time',
+        'error'
+    );
+
+    return;
+}
+
 
         /* =========================
            Duplicate Attendance
@@ -465,23 +491,47 @@ saveAttendanceBtn
                 '.breakEnd'
             )?.value;
 
-            if(
-                start &&
-                end
-            ){
+        if(
+          start &&
+          end
+       ){
 
-                breakHours +=
+    const breakStart =
+    new Date(
+        `2025-01-01T${start}`
+    );
 
-                diffHours(
-                    start,
-                    end
-                );
+    const breakEnd =
+    new Date(
+        `2025-01-01T${end}`
+    );
 
-                breakText +=
+    if(
+        breakEnd <= breakStart
+    ){
 
-                `${start}-${end} `;
-            }
-        });
+        Utils.toast(
+            'Break End Time Must Be Greater Than Break Start Time',
+            'error'
+        );
+
+        return;
+    }
+
+       breakHours +=
+
+        diffHours(
+        start,
+        end
+      );
+
+    breakText +=
+
+    `${start}-${end} `;
+   }
+
+
+});
 
 
         /* =========================
