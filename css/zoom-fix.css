@@ -1,0 +1,12 @@
+
+html,body{
+    min-height:100%;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+.main-content,.content,.page-content,.dashboard-content{
+    max-width:100%;
+}
+table{
+    max-width:100%;
+}

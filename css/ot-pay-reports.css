@@ -67,9 +67,9 @@ body{
 ========================= */
 
 .main-content{
-    margin-left:290px;
+    margin-left:250px;
     min-height:100vh;
-    padding:24px;
+    padding:24px 24px 24px 12px;
     transition:.3s;
 }
 
@@ -390,7 +390,7 @@ body{
     border-radius:
     20px;
 
-    padding:24px;
+    padding:24px 24px 24px 12px;
 
     box-shadow:
     var(--shadow);
@@ -569,7 +569,8 @@ body{
 
     width:100%;
 
-    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y:auto;
 
     border-radius:22px;
 
@@ -1142,7 +1143,8 @@ body{
 
     border-radius:32px;
 
-    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y:auto;
 
     box-shadow:
     0 35px 80px

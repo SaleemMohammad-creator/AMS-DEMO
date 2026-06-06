@@ -4,7 +4,7 @@
 
     width:250px;
 
-    height:100vh;
+    min-height:100vh;
 
     position:fixed;
 
@@ -145,7 +145,8 @@
 
     position:relative;
 
-    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y:auto;
 }
 
 /* Hover Overlay */
@@ -258,7 +259,8 @@
 
     transition:0.3s;
 
-    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y:auto;
 
     position:relative;
 }

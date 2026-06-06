@@ -66,9 +66,9 @@ body{
 ==================== */
 
 .main-content{
-    margin-left:290px;
+    margin-left:250px;
     min-height:100vh;
-    padding:24px;
+    padding:24px 24px 24px 12px;
     transition:.3s;
 }
 
@@ -203,7 +203,8 @@ body{
 
     position:relative;
 
-    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y:auto;
 
     background:
     rgba(255,255,255,.88);
@@ -543,7 +544,7 @@ canvas{
     .main-content{
 
         margin-left:0;
-        padding:24px;
+        padding:24px 24px 24px 12px;
     }
 
     .top-bar{
@@ -595,3 +596,20 @@ canvas{
     }
 }
 .stats-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.stat-card{padding:18px;border-radius:22px}.card-top h2{font-size:28px!important}.charts-grid{gap:18px}.chart-card{padding:18px;border-radius:24px}.bottom-grid{gap:18px}@media(max-width:1200px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+
+
+/* FINAL REPORTS FIX */
+.charts-grid,.bottom-grid{
+    grid-template-columns:1fr !important;
+}
+.chart-card{
+    overflow:hidden;
+}
+canvas{
+    max-height:350px !important;
+}
+#leaveChart{
+    height:280px !important;
+    max-width:600px !important;
+    margin:auto;
+}

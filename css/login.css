@@ -82,7 +82,8 @@ body{
 
     position:absolute;
     inset:0;
-    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y:auto;
     z-index:0;
 }
 
@@ -163,7 +164,8 @@ body{
 
     border-radius:36px;
 
-    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y:auto;
 
     background:
     rgba(255,255,255,.05);
@@ -205,7 +207,8 @@ body{
     flex-direction:column;
     justify-content:space-between;
 
-    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y:auto;
 }
 
 /* Glow */
@@ -578,7 +581,8 @@ body{
     1px solid
     rgba(203,213,225,.85);
 
-    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y:auto;
 
     transition:.35s;
 
@@ -1062,3 +1066,41 @@ body{
     color:#2563eb;
 }
 
+
+
+/* FINAL LOGIN PAGE FIX */
+html,body{
+    height:100vh !important;
+    overflow:hidden !important;
+}
+
+.login-container,
+.auth-container,
+.container{
+    min-height:100vh !important;
+    overflow:hidden !important;
+}
+
+.login-card,
+.login-form,
+.auth-card,
+.right-panel{
+    max-height:88vh !important;
+    overflow:hidden !important;
+}
+
+.right-panel{
+    padding:32px !important;
+}
+
+input,select{
+    height:48px !important;
+}
+
+.login-btn{
+    height:54px !important;
+}
+
+h1,h2,.welcome-title{
+    margin-bottom:10px !important;
+}

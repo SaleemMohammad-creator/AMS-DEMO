@@ -64,9 +64,9 @@ body{
 ========================= */
 
 .main-content{
-    margin-left:290px;
+    margin-left:250px;
     min-height:100vh;
-    padding:24px;
+    padding:24px 24px 24px 12px;
     transition:.3s;
 }
 
@@ -604,7 +604,8 @@ body{
 
     border-collapse:collapse;
 
-    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y:auto;
 
     border-radius:22px;
 }
@@ -862,29 +863,31 @@ body{
 ========================= */
 
 .modal-overlay{
-
     position:fixed;
     inset:0;
 
-    background:
-    rgba(15,23,42,.45);
+    background:rgba(15,23,42,.45);
 
-    backdrop-filter:
-    blur(8px);
+    backdrop-filter:blur(8px);
 
     display:none;
     justify-content:center;
-    align-items:center;
 
+    /* IMPORTANT */
+    align-items:flex-start;
+
+    /* 20px gap top + bottom */
     padding:20px;
+
+    overflow-y:auto;
 
     z-index:9999;
 }
 
 .modal-overlay.active{
-
     display:flex;
 }
+
 
 /* =========================
    MODAL
@@ -895,18 +898,35 @@ body{
     width:650px;
     max-width:100%;
 
+    margin-top:20px;
+    margin-bottom:20px;
+
     background:#fff;
 
     border-radius:30px;
 
     overflow:hidden;
 
-    box-shadow:
-    0 30px 80px
-    rgba(0,0,0,.18);
+    flex-shrink:0;
 
-    animation:
-    modalPop .28s ease;
+    box-shadow:
+    0 30px 80px rgba(0,0,0,.18);
+
+    animation:modalPop .28s ease;
+}
+
+.modal-actions{
+
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+
+    gap:12px;
+
+    padding:0 28px 28px;
+
+    /* NEW */
+    background:#fff;
 }
 
 @keyframes modalPop{
@@ -939,8 +959,8 @@ body{
     align-items:center;
 
     padding:
-    24px
-    28px;
+    16px
+    24px;
 
     border-bottom:
     1px solid
@@ -980,7 +1000,7 @@ body{
 
 .modal-body{
 
-    padding:28px;
+    padding:16px 24px;
 }
 
 /* Form */
@@ -992,7 +1012,7 @@ body{
 
     gap:8px;
 
-    margin-bottom:18px;
+    margin-bottom:10px;
 }
 
 .input-group label{
@@ -1008,7 +1028,7 @@ body{
 .input-group textarea{
 
     width:100%;
-    height:54px;
+    height:46px;
 
     border:
     1px solid
@@ -1029,7 +1049,7 @@ body{
 
 .input-group textarea{
 
-    min-height:110px;
+    min-height:70px;
 
     resize:none;
 
@@ -1074,11 +1094,7 @@ body{
     align-items:center;
 
     gap:12px;
-
-    padding:
-    0
-    28px
-    28px;
+    padding:0 24px 16px;
 }
 
 .save-btn,
@@ -1227,3 +1243,26 @@ body{
         width:100%;
     }
 }
+
+/* FINAL MODAL FIX */
+.modal,
+.modal-overlay{
+    padding:20px !important;
+    overflow-y:auto !important;
+}
+.modal-content,
+.modal-box{
+    width:100%;
+    max-width:700px;
+     padding-bottom:20px;
+      box-sizing:border-box;
+
+    max-height:calc(100vh - 40px);
+
+    overflow-y:auto;
+
+    margin:0 auto;
+
+    border-radius:20px;
+}
+
