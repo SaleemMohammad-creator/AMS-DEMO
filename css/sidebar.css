@@ -2,7 +2,7 @@
 .sidebar *{font-family:'Poppins',sans-serif;}
 .sidebar{
 
-    width:290px;
+    width:250px;
 
     height:100vh;
 
@@ -19,7 +19,7 @@
         #1e3a8a
     );
 
-    padding:25px 18px;
+    padding:22px 14px;
 
     display:flex;
     flex-direction:column;
@@ -59,17 +59,17 @@
 
     display:flex;
     align-items:center;
-    gap:15px;
+    gap:12px;
 
-    margin-bottom:45px;
+    margin-bottom:35px;
 
     flex-shrink:0;
 }
 
 .logo-icon{
 
-    width:55px;
-    height:55px;
+    width:50px;
+    height:50px;
 
     display:flex;
     justify-content:center;
@@ -84,7 +84,7 @@
         #1d4ed8
     );
 
-    font-size:24px;
+    font-size:22px;
 
     box-shadow:
     0 10px 25px rgba(37,99,235,0.4);
@@ -92,7 +92,7 @@
 
 .logo-text h2{
 
-    font-size:28px;
+    font-size:24px;
     font-weight:700;
 
     margin-bottom:2px;
@@ -127,7 +127,7 @@
 
 .sidebar-menu li a{
 
-    height:58px;
+    height:54px;
 
     display:flex;
     align-items:center;
@@ -239,7 +239,7 @@
 
 .sidebar-bottom a{
 
-    height:58px;
+    height:54px;
 
     display:flex;
     align-items:center;
@@ -293,16 +293,82 @@
 }
 
 /* =========================
-   Responsive
+   LAPTOP
+   1025px - 1366px
 ========================= */
 
-@media(max-width:1200px){
+@media(max-width:1366px){
 
     .sidebar{
 
-        width:95px;
+        width:220px;
 
         padding:20px 12px;
+    }
+
+    .logo-section{
+
+        margin-bottom:30px;
+    }
+
+    .logo-icon{
+
+        width:48px;
+        height:48px;
+
+        font-size:20px;
+    }
+
+    .logo-text h2{
+
+        font-size:22px;
+    }
+
+    .logo-text span{
+
+        font-size:12px;
+    }
+
+    .sidebar-menu{
+
+        gap:8px;
+    }
+
+    .sidebar-menu li a{
+
+        height:50px;
+
+        gap:12px;
+
+        padding:0 14px;
+    }
+
+    .sidebar-bottom a{
+
+        height:50px;
+
+        padding:0 14px;
+    }
+
+    .sidebar-menu li a span,
+    .sidebar-bottom a span{
+
+        font-size:14px;
+    }
+}
+
+/* =========================
+   TABLET
+   769px - 1024px
+========================= */
+
+@media(max-width:1024px){
+
+    .sidebar{
+
+        width:90px;
+
+        padding:18px 10px;
     }
 
     .logo-text,
@@ -318,11 +384,22 @@
         justify-content:center;
 
         padding:0;
+
+        height:52px;
+    }
+
+    .sidebar-menu li a i,
+    .sidebar-bottom a i{
+
+        font-size:20px;
+        min-width:auto;
     }
 
     .logo-section{
 
         justify-content:center;
+
+        margin-bottom:25px;
     }
 
     .sidebar-menu li a:hover{
@@ -332,18 +409,18 @@
 }
 
 /* =========================
-   Mobile Sidebar
+   MOBILE SIDEBAR
 ========================= */
 
 @media(max-width:768px){
 
     .sidebar{
 
-        left:-290px;
+        left:-250px;
 
-        width:290px;
+        width:250px;
 
-        padding:25px 18px;
+        padding:22px 14px;
     }
 
     .sidebar.showSidebar{
@@ -363,7 +440,15 @@
 
         justify-content:flex-start;
 
-        padding:0 18px;
+        padding:0 16px;
+
+        height:54px;
+    }
+
+    .sidebar-menu li a i,
+    .sidebar-bottom a i{
+
+        min-width:20px;
     }
 
     .logo-section{
@@ -372,7 +457,43 @@
     }
 }
 
+/* =========================
+   SMALL MOBILE
+========================= */
 
+@media(max-width:480px){
 
-/* Consistent sidebar typography */
-.sidebar-menu li a span,.sidebar-bottom a span{font-weight:600 !important;letter-spacing:.2px;}
+    .sidebar{
+
+        width:230px;
+
+        left:-230px;
+    }
+
+    .logo-text h2{
+
+        font-size:22px;
+    }
+
+    .sidebar-menu li a{
+
+        height:50px;
+    }
+
+    .sidebar-bottom a{
+
+        height:50px;
+    }
+}
+
+/* =========================
+   CONSISTENT TYPOGRAPHY
+========================= */
+
+.sidebar-menu li a span,
+.sidebar-bottom a span{
+
+    font-weight:600 !important;
+
+    letter-spacing:.2px;
+}

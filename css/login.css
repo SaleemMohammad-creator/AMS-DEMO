@@ -45,8 +45,10 @@
 html,
 body{
     width:100%;
-    height:100%;
-    overflow:hidden;
+    min-height:100vh;
+
+    overflow-x:hidden;
+    overflow-y:auto;
 }
 
 body{
@@ -57,7 +59,9 @@ body{
 
     display:flex;
     justify-content:center;
-    align-items:center;
+    align-items:flex-start;
+
+    padding:20px 0;
 
     background:
     linear-gradient(
@@ -146,9 +150,10 @@ body{
     width:1180px;
     max-width:92vw;
 
-    height:88vh;
-    max-height:760px;
+    height:auto;
+    max-height:none;
     min-height:650px;
+    margin:auto;
 
     display:grid;
 
@@ -316,7 +321,11 @@ body{
 
     color:#fff;
 
-    font-size:60px;
+     font-size:clamp(
+        40px,
+        4vw,
+        60px
+    );
     font-weight:700;
 
     line-height:1.03;
@@ -347,7 +356,10 @@ body{
     flex-direction:column;
     gap:16px;
 
-    width:350px;
+    width:100%;
+    max-width: 350px;
+   
+     
 }
 
 .feature-card{
@@ -858,20 +870,31 @@ body{
 }
 
 /* =========================
-   LAPTOP FIT
+   LAPTOPS (1366x768, 1600x900)
 ========================= */
 
-@media(max-height:820px){
+@media (max-width:1366px){
 
     .login-container{
 
-        height:86vh;
+        width:1100px;
+        max-width:95vw;
+
         min-height:620px;
+
+        height:auto;
+        max-height:none;
     }
 
     .left-content h1{
 
-        font-size:52px;
+        font-size:48px;
+    }
+
+    .feature-boxes{
+
+        width:100%;
+        max-width:320px;
     }
 
     .feature-card{
@@ -896,21 +919,66 @@ body{
 }
 
 /* =========================
+   SHORT HEIGHT SCREENS
+   (768px height laptops)
+========================= */
+
+@media (max-height:820px){
+
+    html,
+    body{
+
+        overflow-y:auto;
+    }
+
+    .login-container{
+
+        height:auto;
+        max-height:none;
+
+        min-height:620px;
+
+        margin:20px auto;
+    }
+
+    .left-content h1{
+
+        font-size:48px;
+    }
+
+    .feature-card{
+
+        padding:16px 18px;
+    }
+
+    .form-header h2{
+
+        font-size:38px;
+    }
+}
+
+/* =========================
    TABLET
 ========================= */
 
-@media(max-width:1024px){
+@media (max-width:1024px){
 
     .login-container{
 
         grid-template-columns:1fr;
+
         width:94vw;
+
+        min-height:auto;
+
         height:auto;
+
+        max-height:none;
     }
 
     .left-panel{
 
-        padding:34px;
+        display:none;
     }
 
     .right-panel{
@@ -918,14 +986,79 @@ body{
         padding:34px;
     }
 
-    .left-content h1{
+    .login-form{
 
-        font-size:46px;
-    }
-
-    .feature-boxes{
-
-        width:100%;
+        max-width:450px;
+        margin:auto;
     }
 }
-.input-box{position:relative;}.toggle-password{position:absolute;right:15px;top:50%;transform:translateY(-50%);cursor:pointer;}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+    body{
+
+        padding:15px;
+    }
+
+    .login-container{
+
+        width:100%;
+        max-width:none;
+
+        border-radius:24px;
+    }
+
+    .right-panel{
+
+        padding:28px 22px;
+    }
+
+    .form-header h2{
+
+        font-size:32px;
+    }
+
+    .input-box{
+
+        height:54px;
+    }
+
+    .login-btn{
+
+        height:52px;
+    }
+}
+
+/* =========================
+   PASSWORD TOGGLE
+========================= */
+
+.input-box{
+    position:relative;
+}
+
+.toggle-password{
+
+    position:absolute;
+
+    right:15px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    cursor:pointer;
+
+    color:#64748b;
+
+    transition:.25s;
+}
+
+.toggle-password:hover{
+
+    color:#2563eb;
+}
+
